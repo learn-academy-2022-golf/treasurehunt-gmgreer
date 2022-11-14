@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { useEffect } from "react"
 import "./App.css"
 import Square from './components/Square'
 
@@ -14,15 +15,25 @@ const App = () => {
     "?",
     "?"
   ])
+  const [treasure, setTreasure] = useState(Math.floor(Math.random()*board.length))
+  const [bomb, setBomb] = useState(Math.floor(Math.random()*board.length))
 
   const handleGamePlay = (index) => {
     const newBoard = [...board]
-    newBoard[index] = "🦖"
+    if (treasure === index) newBoard[index] = "🐲"
+    else if (bomb === index) newBoard[index] = "💣"
+    else newBoard[index] = "🦖"
     setBoard(newBoard)
   }
 
+  useEffect(()=> {
+    if (treasure === bomb) {
+      setBomb(Math.floor(Math.random()*board.length))
+    }
+  },[bomb, treasure])
+
   return (
-    <>
+    <div className="main">
       <h1>Treasure Hunt Game</h1>
       <div className="gameBoard">
       {board.map((item, index) => 
@@ -34,7 +45,7 @@ const App = () => {
         />)}
       </div>
       
-    </>
+    </div>
   )
 }
 
