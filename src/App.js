@@ -17,9 +17,10 @@ const App = () => {
   ])
   const [treasure, setTreasure] = useState(Math.floor(Math.random()*board.length))
   const [bomb, setBomb] = useState(Math.floor(Math.random()*board.length))
-
+  const [count, setCount] = useState(5)
   const handleGamePlay = (index) => {
     const newBoard = [...board]
+    setCount((prevCount) => prevCount -= 1)
     if (treasure === index) newBoard[index] = "🐲"
     else if (bomb === index) newBoard[index] = "💣"
     else newBoard[index] = "🦖"
@@ -49,6 +50,10 @@ const App = () => {
   return (
     <div className="main">
       <h1>Treasure Hunt Game</h1>
+      <div className="container">
+        <div className="counter">
+          <p>Count: {count}</p>
+        </div>
       <div className="gameBoard">
       {board.map((item, index) => 
         <Square 
@@ -58,6 +63,8 @@ const App = () => {
           handleGamePlay={handleGamePlay}
         />)}
       </div>
+      </div>
+      
     <div className="buttonDiv">
     <button id="submit" onClick={handleReset}>Reset</button>
     </div>

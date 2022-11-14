@@ -9,6 +9,21 @@ h1 {
  
 }
 
+.container {
+  display: grid;
+  grid-template-columns: 1fr 610px 1fr;
+
+}
+.counter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.counter p {
+color: white;
+font-size: 64px;
+}
+
 .main {
   background-image: url("./assets/bg.jpeg");
   
