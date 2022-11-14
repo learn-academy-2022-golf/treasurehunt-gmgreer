@@ -18,11 +18,19 @@ const App = () => {
   const [treasure, setTreasure] = useState(Math.floor(Math.random()*board.length))
   const [bomb, setBomb] = useState(Math.floor(Math.random()*board.length))
   const [count, setCount] = useState(5)
+  const [win, setWin]= useState()
   const handleGamePlay = (index) => {
     const newBoard = [...board]
+    if (win) return
     setCount((prevCount) => prevCount -= 1)
-    if (treasure === index) newBoard[index] = "🐲"
-    else if (bomb === index) newBoard[index] = "💣"
+    if (treasure === index) {
+      newBoard[index] = "🐲"
+      setWin("WIN")
+    }
+    else if (bomb === index) {
+      newBoard[index] = "💣"
+      setWin("LOSE")
+    }
     else newBoard[index] = "🦖"
     setBoard(newBoard)
   }
@@ -39,6 +47,10 @@ const App = () => {
       "?",
       "?"
     ])
+    setWin("")
+    setCount(5)
+    setBomb(Math.floor(Math.random()*board.length))
+    setTreasure(Math.floor(Math.random()*board.length))
   }
 
   useEffect(()=> {
@@ -46,6 +58,14 @@ const App = () => {
       setBomb(Math.floor(Math.random()*board.length))
     }
   },[bomb, treasure])
+
+  useEffect(()=>{
+    if(count===0 && win === "WIN") 
+    {setWin("WIN")}
+    else if (count===0) {
+      setWin("LOSE")
+    }
+  },[count, win])
 
   return (
     <div className="main">
@@ -63,6 +83,9 @@ const App = () => {
           handleGamePlay={handleGamePlay}
         />)}
       </div>
+      <div className="win-lose">
+          <p>{win}</p>
+        </div>
       </div>
       
     <div className="buttonDiv">
