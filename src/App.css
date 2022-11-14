@@ -11,7 +11,7 @@ h1 {
 
 .main {
   background-image: url("./assets/bg.jpeg");
-  height: 100vh;
+  
 }
 .square {
   height: 200px;
@@ -24,9 +24,31 @@ h1 {
   color: white;
 }
 
+.square:hover {
+  cursor: pointer;
+}
+
 .gameBoard {
   margin-top: 16px;
   display: grid;
   grid-template-columns: repeat(3, 200px);
   justify-content: center;
+}
+
+#submit {
+  width: 400px;
+  height: 30px;
+  font-size: 24px;
+  
+}
+
+#submit:hover {
+  cursor: pointer;
+}
+
+.buttonDiv{
+  display: flex;
+  justify-content: center;
+  background-color: black;
+  padding: 16px 0;
 }

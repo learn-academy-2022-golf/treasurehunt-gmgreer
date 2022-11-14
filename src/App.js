@@ -26,6 +26,20 @@ const App = () => {
     setBoard(newBoard)
   }
 
+  const handleReset = () => {
+    setBoard([
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?"
+    ])
+  }
+
   useEffect(()=> {
     if (treasure === bomb) {
       setBomb(Math.floor(Math.random()*board.length))
@@ -44,6 +58,10 @@ const App = () => {
           handleGamePlay={handleGamePlay}
         />)}
       </div>
+    <div className="buttonDiv">
+    <button id="submit" onClick={handleReset}>Reset</button>
+    </div>
+      
       
     </div>
   )
