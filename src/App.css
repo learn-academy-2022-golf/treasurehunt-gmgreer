@@ -24,6 +24,17 @@ color: white;
 font-size: 64px;
 }
 
+.win-lose {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.win-lose p {
+  color: white;
+font-size: 64px;
+}
+
 .main {
   background-image: url("./assets/bg.jpeg");
   
